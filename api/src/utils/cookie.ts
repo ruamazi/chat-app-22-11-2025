@@ -14,7 +14,7 @@ export const setJwtCookie = ({res, userId}: Cookie) => {
  const expiresIn = Env.JWT_EXPIRES_IN as Time;
  const token = jwt.sign(payload, Env.JWT_SECRET, { audience: ["user"], expiresIn: expiresIn || "7d" });
 
- return res.cookie("accessToken", token, {
+ return res.cookie("accesstoken", token, {
     httpOnly: true,
     secure: Env.NODE_ENV === "production" ? true : false,
     sameSite: Env.NODE_ENV === "production" ? "strict" : "lax",
@@ -23,5 +23,5 @@ export const setJwtCookie = ({res, userId}: Cookie) => {
 }
 
 export const clearJwtCookie = (res: Response) => {
-    return res.clearCookie("accessToken", {path: "/"})
+    return res.clearCookie("accesstoken", {path: "/"})
 }

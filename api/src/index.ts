@@ -8,7 +8,9 @@ import { asyncHandler } from "./middlewares/asyncHandler.middleware";
 import { httpStatus } from "./config/http.config";
 import { errorHandler } from "./middlewares/errorHandler.middleware";
 import { connectDB } from "./config/db.config";
-import ".config/passport.config"
+import routes from "./routes";
+
+import "./config/passport.config";
 
 const app = express();
 
@@ -32,6 +34,8 @@ app.get(
     });
   })
 );
+
+app.use("/api", routes)
 
 app.use(errorHandler)
 
